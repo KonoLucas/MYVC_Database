@@ -20,26 +20,6 @@ ALTER TABLE Personnel DROP CHECK Personnel_chk_1;
 ALTER TABLE Personnel CHANGE COLUMN role roles VARCHAR(30) NOT NULL;
 ALTER TABLE Personnel ADD CONSTRAINT chk_roles CHECK (roles IN ('General Manager', 'Deputy Manager', 'Treasurer', 'Secretary', 'Administrator', 'Coach', 'Assistant Coach', 'Captain', 'Other'));
 
-SELECT 
-    Personnel.first_name, 
-    Personnel.last_name, 
-    Personnel.dob, 
-    Personnel.ssn, 
-    Personnel.medicare_number, 
-    Personnel.telephone_number, 
-    Personnel.address,
-    Personnel.city,
-    Personnel.province ,
-    Personnel.postal_code ,
-    Personnel.email, 
-    Personnel.roles, 
-    Personnel.mandate
-FROM Personnel 
-INNER JOIN PersonnelAssignment 
-    ON Personnel.personnel_id = PersonnelAssignment.personnel_id
-INNER JOIN ClubLocation 
-    ON PersonnelAssignment.location_id = ClubLocation.location_id
-WHERE ClubLocation.name = 'Downtown Club'
 
 
 
